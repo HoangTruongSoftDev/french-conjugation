@@ -8,4 +8,5 @@ let searchVerb = ref();
 <template>
   <VerbSearch @searchVerb="(data) => (searchVerb = data)" />
   <VerbConjugation v-if="searchVerb !== undefined" :searchVerb="searchVerb" />
+  <p v-else>There's no verb has been found</p>
 </template>
