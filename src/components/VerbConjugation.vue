@@ -1,17 +1,7 @@
 <script setup>
 import VerbTemplate from "./VerbTemplate.vue";
-
+import { ref } from "vue";
 const props = defineProps(["searchVerb"]);
-function concatenatePronoms(verbs) {
-  const pronoms = ["je", "tu", "il/elle/on", "nous", "vous", "ils/elles"];
-  const vowel = ["a", "e", "i", "o", "u"];
-  return pronoms.map((pronom, idx) => {
-    if (pronom === "je" && vowel.includes(verbs[idx][0])) {
-      return "j'" + verbs[idx];
-    }
-    return `${pronom} ${verbs[idx]}`;
-  });
-}
 </script>
 
 <template>
@@ -25,55 +15,55 @@ function concatenatePronoms(verbs) {
         <div class="div-component">
           <VerbTemplate
             class="verb-template"
-            tense="Présent"
-            :verb="concatenatePronoms(props.searchVerb.present)"
+            verbTense="Présent"
+            :verb="props.searchVerb.present"
           />
           <VerbTemplate
             class="verb-template"
-            tense="Imparfait"
-            :verb="concatenatePronoms(props.searchVerb.imparfait)"
+            verbTense="Imparfait"
+            :verb="props.searchVerb.imparfait"
           />
 
           <VerbTemplate
             class="verb-template"
-            tense="Futur simple"
-            :verb="concatenatePronoms(props.searchVerb.futurSimple)"
+            verbTense="Futur simple"
+            :verb="props.searchVerb.futurSimple"
           />
         </div>
         <div class="div-component">
           <VerbTemplate
             class="verb-template"
-            tense="Passé simple"
-            :verb="concatenatePronoms(props.searchVerb.passeSimple)"
+            verbTense="Passé simple"
+            :verb="props.searchVerb.passeSimple"
           />
           <VerbTemplate
             class="verb-template"
-            tense="Passé composé"
-            :verb="concatenatePronoms(props.searchVerb.passeCompose)"
+            verbTense="Passé composé"
+            :verb="props.searchVerb.passeCompose"
           />
           <VerbTemplate
             class="verb-template"
-            tense="Plus-que-parfait"
-            :verb="concatenatePronoms(props.searchVerb.plusQueParfait)"
+            verbTense="Plus-que-parfait"
+            :verb="props.searchVerb.plusQueParfait"
           />
         </div>
         <div class="div-component">
           <VerbTemplate
             class="verb-template"
-            tense="Passé antérieur"
-            :verb="concatenatePronoms(props.searchVerb.passeAnterieur)"
+            verbTense="Passé antérieur"
+            :verb="props.searchVerb.passeAnterieur"
           />
           <VerbTemplate
             class="verb-template"
-            tense="Futur antérieur"
-            :verb="concatenatePronoms(props.searchVerb.futurAnterieur)"
+            verbTense="Futur antérieur"
+            :verb="props.searchVerb.futurAnterieur"
           />
           <div>
             <h2>Subjonctif</h2>
             <VerbTemplate
               class="verb-template"
-              tense="Présent"
-              :verb="concatenatePronoms(props.searchVerb.subjonctifPresent)"
+              verbTense="Présent"
+              :verb="props.searchVerb.subjonctifPresent"
             />
           </div>
         </div>

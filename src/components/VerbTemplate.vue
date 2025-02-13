@@ -1,5 +1,15 @@
 <script setup>
-const props = defineProps(["tense", "verb"]);
+const props = defineProps(["verbTense", "verb"]);
+function concatenatePronoms(verbs) {
+  const pronoms = ["je", "tu", "il/elle/on", "nous", "vous", "ils/elles"];
+  const vowel = ["a", "e", "i", "o", "u"];
+  return pronoms.map((pronom, idx) => {
+    if (pronom === "je" && vowel.includes(verbs[idx][0])) {
+      return "j'" + verbs[idx];
+    }
+    return `${pronom} ${verbs[idx]}`;
+  });
+}
 function formatVerb(verbs) {
   return verbs.map((verb) => {
     const [firstWord, secondWord, ...rest] = verb.split(/[\s']/);
@@ -12,15 +22,16 @@ function formatVerb(verbs) {
       : [modifiedFirstWord, secondWord, ...rest].join(" ");
   });
 }
-const formattedVerb = formatVerb(props.verb);
-console.log(props.verb);
 </script>
 
 <template>
   <div class="conjugation-container">
-    <h3>{{ props.tense }}</h3>
+    <h3>{{ props.verbTense }}</h3>
     <ul>
-      <li v-for="currVerb in formattedVerb" v-html="currVerb"></li>
+      <li
+        v-for="currVerb in formatVerb(concatenatePronoms(props.verb))"
+        v-html="currVerb"
+      ></li>
     </ul>
   </div>
 </template>

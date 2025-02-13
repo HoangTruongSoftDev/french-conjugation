@@ -7,5 +7,5 @@ let searchVerb = ref();
 
 <template>
   <VerbSearch @searchVerb="(data) => (searchVerb = data)" />
-  <VerbConjugation :searchVerb="searchVerb" />
+  <VerbConjugation v-if="searchVerb !== undefined" :searchVerb="searchVerb" />
 </template>
