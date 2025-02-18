@@ -1,58 +1,30 @@
 <script setup>
-import { vowels, pronoms } from "../model/Utility";
 const props = defineProps(["verbTense", "verb"]);
+import { ref, watch } from "vue";
+// props.verb = Array.isArray(props.verb) ? props.verb : [props.verb];
 
 console.log("Checking: " + props.verb);
+console.log("Checking type: " + typeof props.verb);
 console.log(props.verbTense);
-
-// ex: verbs =  ["vais", "vas", "va", "allons", "allez", "vont"]
-function concatenatePronoms(verbs) {
-  return pronoms.map((pronom, idx) => {
-    if (pronom === "je" && vowels.includes(props.verb[idx][0])) {
-      return "j'" + verbs[idx];
-    }
-    return `${pronom} ${verbs[idx]}`;
-  });
-}
-
-function boldVerb(phrases) {
-  return phrases.map((phrase) => {
-    const verbComponents = phrase.split(" ");
-    const modifiedLastComponent = `<strong>${
-      verbComponents[verbComponents.length - 1]
-    }</strong>`;
-    return [...verbComponents.slice(0, -1), modifiedLastComponent].join(" ");
-  });
-}
-// ex: phrases = ["je vais", "tu vas", "il va", "nous allons", "vous allez", "ils vont]
-function concatenateSubjonctif(phrases) {
-  return phrases.map((phrase) => {
-    if (vowels.includes(phrase[0])) {
-      return `qu'${phrase}`;
-    } else return `que ${phrase}`;
-  });
-}
-function formatPhrase(verbs) {
-  let formattedPhrase = boldVerb(verbs);
-  formattedPhrase = concatenatePronoms(formattedPhrase);
-  formattedPhrase = props.verbTense.includes("Subjonctif")
-    ? concatenateSubjonctif(formattedPhrase)
-    : formattedPhrase;
-  return formattedPhrase;
-}
+let verbs = ref(props.verb);
+verbs.value = Array.isArray(verbs.value) ? verbs.value : [verbs.value];
+console.log("Checking ref truong: " + verbs.value);
+// use watch to update verbs when props.verb changes
+watch(
+  () => props.verb,
+  (newValue) => {
+    verbs.value = Array.isArray(newValue) ? newValue : [newValue];
+  }
+);
 </script>
 
 <template>
   <div class="conjugation-container">
     <h3>
-      {{
-        props.verbTense.includes("Subjonctif")
-          ? props.verbTense.split(" ")[1]
-          : props.verbTense
-      }}
+      {{ props.verbTense }}
     </h3>
     <ul>
-      <li v-for="currVerb in formatPhrase(props.verb)" v-html="currVerb"></li>
+      <li v-for="currVerb in verbs" v-html="currVerb"></li>
     </ul>
   </div>
 </template>

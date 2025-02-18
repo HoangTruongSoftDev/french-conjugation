@@ -41,10 +41,10 @@ const verbTenseIndicatifs = [
   "futurAnterieur",
 ];
 const verbTenseNameSubjonctifs = {
-  subjonctifPresent: "Subjonctif Présent",
-  subjonctifImparfait: "Subjonctif Imparfait",
-  subjonctifPlusQueParfait: "Subjonctif Plus-que-parfait",
-  subjonctifPasse: "Subjonctif Passé",
+  subjonctifPresent: "Présent",
+  subjonctifImparfait: "Imparfait",
+  subjonctifPlusQueParfait: "Plus-que-parfait",
+  subjonctifPasse: "Passé",
 };
 
 const verbTenseSubjonctifs = [
@@ -53,6 +53,27 @@ const verbTenseSubjonctifs = [
   "subjonctifPlusQueParfait",
   "subjonctifPasse",
 ];
+const verbTenseNameConditionnels = {
+  conditionnelPresent: "Présent",
+  conditionnelPasse: "Passé première forme",
+  conditionnelPasseII: "Passé deuxième forme",
+};
+const verbTenseConditionnels = [
+  "conditionnelPresent",
+  "conditionnelPasse",
+  "conditionnelPasseII",
+];
+const verbTensePasses = ["participePresent", "participePasse"];
+const verbTenseNamePasses = {
+  participePresent: "Présent",
+  participePasse: "Passé composé",
+};
+const verbTenseImperatifs = ["imperatif", "imperatifPasse"];
+const verbTenseNameImperatifs = {
+  imperatif: "Présent",
+  imperatifPasse: "Passé",
+};
+
 export {
   pronoms,
   vowels,
@@ -60,4 +81,10 @@ export {
   verbTenseIndicatifs,
   verbTenseSubjonctifs,
   verbTenseNameSubjonctifs,
+  verbTenseConditionnels,
+  verbTenseNameConditionnels,
+  verbTensePasses,
+  verbTenseNamePasses,
+  verbTenseImperatifs,
+  verbTenseNameImperatifs,
 };
